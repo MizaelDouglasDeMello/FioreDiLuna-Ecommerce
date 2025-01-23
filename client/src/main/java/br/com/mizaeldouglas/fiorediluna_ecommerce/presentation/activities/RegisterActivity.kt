@@ -18,6 +18,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun initializer() {
+        initializerToolbar()
         auth = FirebaseAuth.getInstance()
         binding.btnRegister.setOnClickListener {
             val email = binding.textInputEditEmail.text.toString()
@@ -28,6 +29,16 @@ class RegisterActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    private fun initializerToolbar() {
+        val toolbar = binding.includeTbRegister.tbMain
+        setSupportActionBar(toolbar)
+
+        supportActionBar?.apply {
+            title = "Register"
+            setDisplayHomeAsUpEnabled(true)
         }
     }
 
