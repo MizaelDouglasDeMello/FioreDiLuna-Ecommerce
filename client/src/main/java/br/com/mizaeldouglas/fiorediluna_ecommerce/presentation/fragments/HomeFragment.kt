@@ -5,23 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import br.com.mizaeldouglas.fiorediluna_ecommerce.R
+import br.com.mizaeldouglas.fiorediluna_ecommerce.presentation.viewmodels.SharedViewModel
 
 class HomeFragment : Fragment() {
 
-    companion object {
-        private const val ARG_USER_EMAIL = "user_email"
-        private const val ARG_USER_NAME = "user_name"
-
-        fun newInstance(email: String?, name: String?): HomeFragment {
-            val fragment = HomeFragment()
-            val args = Bundle()
-            args.putString(ARG_USER_EMAIL, email)
-            args.putString(ARG_USER_NAME, name)
-            fragment.arguments = args
-            return fragment
-        }
-    }
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,10 +23,13 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Recupera os argumentos (se necessário)
-        val userEmail = arguments?.getString(ARG_USER_EMAIL)
-        val userName = arguments?.getString(ARG_USER_NAME)
+        // Observa os dados do ViewModel
+        sharedViewModel.userEmail.observe(viewLifecycleOwner) { email ->
+            // Atualizar a UI com o email, se necessário
+        }
 
-        // Aqui você pode usar os dados do usuário se precisar
+        sharedViewModel.userName.observe(viewLifecycleOwner) { name ->
+            // Atualizar a UI com o nome, se necessário
+        }
     }
 }

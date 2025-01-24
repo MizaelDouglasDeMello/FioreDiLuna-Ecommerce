@@ -1,6 +1,7 @@
 package br.com.mizaeldouglas.fiorediluna_ecommerce.presentation.activities
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import br.com.mizaeldouglas.fiorediluna_ecommerce.R
@@ -8,10 +9,12 @@ import br.com.mizaeldouglas.fiorediluna_ecommerce.databinding.ActivityHomeBindin
 import br.com.mizaeldouglas.fiorediluna_ecommerce.presentation.fragments.HomeFragment
 import br.com.mizaeldouglas.fiorediluna_ecommerce.presentation.fragments.ProfileFragment
 import br.com.mizaeldouglas.fiorediluna_ecommerce.presentation.fragments.SearchFragment
+import br.com.mizaeldouglas.fiorediluna_ecommerce.presentation.viewmodels.SharedViewModel
 
 class HomeActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityHomeBinding.inflate(layoutInflater) }
+    private val sharedViewModel: SharedViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,15 +23,15 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun initializer() {
+        setupViewModel()
         setupBottomNavigation()
+        loadFragment(HomeFragment())
+    }
 
-        // Recupera os dados do Intent
+    private fun setupViewModel() {
         val userEmail = intent.getStringExtra("USER_EMAIL")
         val userName = intent.getStringExtra("USER_NAME")
-
-        // Passa o Fragment inicial com os dados
-        val homeFragment = HomeFragment.newInstance(userEmail, userName)
-        loadFragment(homeFragment)
+        sharedViewModel.setUserData(userEmail, userName)
     }
 
     private fun loadFragment(fragment: Fragment) {
@@ -37,20 +40,12 @@ class HomeActivity : AppCompatActivity() {
             .commit()
     }
 
-
-
     private fun setupBottomNavigation() {
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             val fragment: Fragment = when (item.itemId) {
-                R.id.nav_home -> HomeFragment.newInstance(
-                    intent.getStringExtra("USER_EMAIL"),
-                    intent.getStringExtra("USER_NAME")
-                )
+                R.id.nav_home -> HomeFragment()
                 R.id.nav_search -> SearchFragment()
-                R.id.nav_profile -> ProfileFragment.newInstance(
-                    intent.getStringExtra("USER_EMAIL"),
-                    intent.getStringExtra("USER_NAME")
-                )
+                R.id.nav_profile -> ProfileFragment()
                 else -> HomeFragment()
             }
             loadFragment(fragment)
@@ -58,5 +53,4 @@ class HomeActivity : AppCompatActivity() {
         }
         binding.bottomNavigation.selectedItemId = R.id.nav_home
     }
-
 }
