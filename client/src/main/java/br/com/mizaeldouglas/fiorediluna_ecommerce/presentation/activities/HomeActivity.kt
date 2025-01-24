@@ -17,12 +17,18 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         initializer()
-
     }
 
     private fun initializer() {
         setupBottomNavigation()
-        loadFragment(HomeFragment())
+
+        // Recupera os dados do Intent
+        val userEmail = intent.getStringExtra("USER_EMAIL")
+        val userName = intent.getStringExtra("USER_NAME")
+
+        // Passa o Fragment inicial com os dados
+        val homeFragment = HomeFragment.newInstance(userEmail, userName)
+        loadFragment(homeFragment)
     }
 
     private fun loadFragment(fragment: Fragment) {
@@ -31,18 +37,26 @@ class HomeActivity : AppCompatActivity() {
             .commit()
     }
 
+
+
     private fun setupBottomNavigation() {
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             val fragment: Fragment = when (item.itemId) {
-                R.id.nav_home -> HomeFragment()
+                R.id.nav_home -> HomeFragment.newInstance(
+                    intent.getStringExtra("USER_EMAIL"),
+                    intent.getStringExtra("USER_NAME")
+                )
                 R.id.nav_search -> SearchFragment()
-                R.id.nav_profile -> ProfileFragment()
+                R.id.nav_profile -> ProfileFragment.newInstance(
+                    intent.getStringExtra("USER_EMAIL"),
+                    intent.getStringExtra("USER_NAME")
+                )
                 else -> HomeFragment()
             }
             loadFragment(fragment)
             true
         }
-        // Seleciona o item "Home" como ativo
         binding.bottomNavigation.selectedItemId = R.id.nav_home
     }
+
 }

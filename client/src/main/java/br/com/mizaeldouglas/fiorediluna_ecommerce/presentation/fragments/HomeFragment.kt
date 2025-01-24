@@ -5,24 +5,38 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import br.com.mizaeldouglas.fiorediluna_ecommerce.databinding.FragmentHomeBinding
+import br.com.mizaeldouglas.fiorediluna_ecommerce.R
 
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    companion object {
+        private const val ARG_USER_EMAIL = "user_email"
+        private const val ARG_USER_NAME = "user_name"
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
+        fun newInstance(email: String?, name: String?): HomeFragment {
+            val fragment = HomeFragment()
+            val args = Bundle()
+            args.putString(ARG_USER_EMAIL, email)
+            args.putString(ARG_USER_NAME, name)
+            fragment.arguments = args
+            return fragment
+        }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_home, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Recupera os argumentos (se necessário)
+        val userEmail = arguments?.getString(ARG_USER_EMAIL)
+        val userName = arguments?.getString(ARG_USER_NAME)
+
+        // Aqui você pode usar os dados do usuário se precisar
     }
 }
