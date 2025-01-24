@@ -1,5 +1,6 @@
 package br.com.mizaeldouglas.fiorediluna_ecommerce.presentation.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -14,11 +15,22 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        initializerToolbar()
         initializer()
+    }
+    override fun onStart() {
+        super.onStart()
+
+        // Se o usuário já estiver logado, vá para a HomeActivity
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+            finish() // Finaliza a LoginActivity
+        }
     }
 
     private fun initializer() {
-        initializerToolbar()
         auth = FirebaseAuth.getInstance()
         binding.btnRegister.setOnClickListener {
             val email = binding.textInputEditEmail.text.toString()

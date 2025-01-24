@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Fiore di Luna - Ecommerce</string>
     <string name="textLogin">Your Premier Destination for Lush Greenery: Elevate your space with our exceptional plant selection</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

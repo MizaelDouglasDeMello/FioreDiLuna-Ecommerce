@@ -4,4 +4,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background">#F6F6F6</color>
     <color name="primaryColor">#017537</color>
+
+    <color name="bottom_nav_color">#FFFFFF</color>
+    <color name="bottom_nav_icon_tint">#FF5722</color>
+
 </resources>
