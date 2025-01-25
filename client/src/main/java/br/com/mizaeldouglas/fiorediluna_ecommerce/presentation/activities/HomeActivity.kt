@@ -43,9 +43,12 @@ class HomeActivity : AppCompatActivity() {
     private fun setupBottomNavigation() {
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             val fragment: Fragment = when (item.itemId) {
-                R.id.nav_home -> HomeFragment()
+                R.id.nav_home -> HomeFragment.newInstance(
+                    intent.getStringExtra("USER_EMAIL"),
+                    intent.getStringExtra("USER_NAME")
+                )
                 R.id.nav_search -> SearchFragment()
-                R.id.nav_profile -> ProfileFragment()
+                R.id.nav_profile -> ProfileFragment() // Os dados vêm do FirebaseAuth
                 else -> HomeFragment()
             }
             loadFragment(fragment)
@@ -53,4 +56,5 @@ class HomeActivity : AppCompatActivity() {
         }
         binding.bottomNavigation.selectedItemId = R.id.nav_home
     }
+
 }

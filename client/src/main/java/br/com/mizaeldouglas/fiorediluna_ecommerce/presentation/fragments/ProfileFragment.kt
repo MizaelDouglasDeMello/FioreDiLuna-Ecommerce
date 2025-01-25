@@ -11,24 +11,12 @@ import androidx.fragment.app.Fragment
 import br.com.mizaeldouglas.fiorediluna_ecommerce.R
 import br.com.mizaeldouglas.fiorediluna_ecommerce.presentation.activities.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 class ProfileFragment : Fragment() {
 
     private lateinit var auth: FirebaseAuth
-
-    companion object {
-        private const val ARG_USER_EMAIL = "user_email"
-        private const val ARG_USER_NAME = "user_name"
-
-        fun newInstance(email: String?, name: String?): ProfileFragment {
-            val fragment = ProfileFragment()
-            val args = Bundle()
-            args.putString(ARG_USER_EMAIL, email)
-            args.putString(ARG_USER_NAME, name)
-            fragment.arguments = args
-            return fragment
-        }
-    }
+    private var currentUser: FirebaseUser? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,18 +30,16 @@ class ProfileFragment : Fragment() {
 
         // Inicializa o FirebaseAuth
         auth = FirebaseAuth.getInstance()
+        currentUser = auth.currentUser
 
-        // Recupera os argumentos
-        val userEmail = arguments?.getString(ARG_USER_EMAIL)
-        val userName = arguments?.getString(ARG_USER_NAME)
-
-        // Exibe os dados no layout
+        // Recupera os elementos da UI
         val tvEmail: TextView = view.findViewById(R.id.tv_user_email)
         val tvName: TextView = view.findViewById(R.id.tv_user_name)
         val btnLogout: Button = view.findViewById(R.id.btn_logout)
 
-        tvEmail.text = userEmail ?: "Email não disponível"
-        tvName.text = userName ?: "Nome não disponível"
+        // Exibe o e-mail e nome do usuário
+        tvEmail.text = currentUser?.email ?: "Email não disponível"
+        tvName.text = currentUser?.displayName ?: "Nome não disponível"
 
         // Configura o botão de logout
         btnLogout.setOnClickListener {

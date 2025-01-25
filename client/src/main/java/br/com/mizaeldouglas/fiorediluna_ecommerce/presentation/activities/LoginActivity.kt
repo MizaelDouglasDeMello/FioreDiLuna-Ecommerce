@@ -55,13 +55,13 @@ class LoginActivity : AppCompatActivity() {
                     val user = auth.currentUser
                     val intent = Intent(this, HomeActivity::class.java)
                     intent.putExtra("USER_EMAIL", user?.email)
-                    intent.putExtra("USER_NAME", user?.displayName)
+                    intent.putExtra("USER_NAME", user?.displayName ?: "Usuário")
                     startActivity(intent)
                     finish()
                 } else {
-                    Toast.makeText(this, "Erro: ${task.exception?.message}", Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(this, "Erro: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                 }
             }
     }
+
 }
