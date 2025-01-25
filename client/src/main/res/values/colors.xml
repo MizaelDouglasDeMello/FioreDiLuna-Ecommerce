@@ -7,5 +7,6 @@
 
     <color name="bottom_nav_color">#FFFFFF</color>
     <color name="bottom_nav_icon_tint">#FF5722</color>
+    <color name="grey">#717171</color>
 
 </resources>
