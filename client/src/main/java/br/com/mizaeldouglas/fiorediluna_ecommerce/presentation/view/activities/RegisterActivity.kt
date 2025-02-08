@@ -1,4 +1,4 @@
-package br.com.mizaeldouglas.fiorediluna_ecommerce.presentation.activities
+package br.com.mizaeldouglas.fiorediluna_ecommerce.presentation.view.activities
 
 import android.content.Intent
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package br.com.mizaeldouglas.fiorediluna_ecommerce.presentation.fragments
+package br.com.mizaeldouglas.fiorediluna_ecommerce.presentation.view.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,7 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import br.com.mizaeldouglas.fiorediluna_ecommerce.R
-import br.com.mizaeldouglas.fiorediluna_ecommerce.presentation.activities.LoginActivity
+import br.com.mizaeldouglas.fiorediluna_ecommerce.presentation.view.activities.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 

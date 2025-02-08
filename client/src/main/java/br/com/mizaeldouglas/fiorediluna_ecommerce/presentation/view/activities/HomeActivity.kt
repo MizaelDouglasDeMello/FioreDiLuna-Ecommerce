@@ -1,4 +1,4 @@
-package br.com.mizaeldouglas.fiorediluna_ecommerce.presentation.activities
+package br.com.mizaeldouglas.fiorediluna_ecommerce.presentation.view.activities
 
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -6,9 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import br.com.mizaeldouglas.fiorediluna_ecommerce.R
 import br.com.mizaeldouglas.fiorediluna_ecommerce.databinding.ActivityHomeBinding
-import br.com.mizaeldouglas.fiorediluna_ecommerce.presentation.fragments.HomeFragment
-import br.com.mizaeldouglas.fiorediluna_ecommerce.presentation.fragments.ProfileFragment
-import br.com.mizaeldouglas.fiorediluna_ecommerce.presentation.fragments.SearchFragment
+import br.com.mizaeldouglas.fiorediluna_ecommerce.presentation.view.fragments.HomeFragment
+import br.com.mizaeldouglas.fiorediluna_ecommerce.presentation.view.fragments.ProfileFragment
+import br.com.mizaeldouglas.fiorediluna_ecommerce.presentation.view.fragments.SearchFragment
 import br.com.mizaeldouglas.fiorediluna_ecommerce.presentation.viewmodels.SharedViewModel
 
 class HomeActivity : AppCompatActivity() {

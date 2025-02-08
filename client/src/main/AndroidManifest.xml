@@ -26,17 +26,17 @@
         android:theme="@style/Theme.FioreDiLunaEcommerce"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.activities.HomeActivity"
+            android:name=".presentation.view.activities.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.activities.RegisterActivity"
+            android:name=".presentation.view.activities.RegisterActivity"
             android:exported="false"
-            android:parentActivityName=".presentation.activities.LoginActivity" />
+            android:parentActivityName=".presentation.view.activities.LoginActivity" />
         <activity
-            android:name=".presentation.activities.MainActivity"
+            android:name=".presentation.view.activities.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.activities.LoginActivity"
+            android:name=".presentation.view.activities.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

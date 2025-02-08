@@ -1,4 +1,4 @@
-package br.com.mizaeldouglas.fiorediluna_ecommerce.presentation.fragments
+package br.com.mizaeldouglas.fiorediluna_ecommerce.presentation.view.fragments
 
 import android.animation.ValueAnimator
 import android.os.Bundle
